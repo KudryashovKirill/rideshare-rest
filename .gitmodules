@@ -1,0 +1,3 @@
+[submodule "rideshare-api-contract"]
+	path = rideshare-api-contract
+	url = https://github.com/KudryashovKirill/rideshare-api-contract.git
