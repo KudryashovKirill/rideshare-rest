@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>rideshare-rest-v1</artifactId>
+    <artifactId>rideshare-rest-graphQL-v1.1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -16,6 +16,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>rideshare-api-contract</module>
-        <module>rideshare-rest</module>
+        <module>rideshare-rest-graphQL</module>
     </modules>
 </project>
