@@ -19,9 +19,9 @@ public class BookingModelAssembler implements
                 linkTo(methodOn(BookingController.class).getBookingById(booking.getId())).withSelfRel(),
                 linkTo(methodOn(BookingController.class).getAllBookings(null, 0, 20)).withRel("collection")
         );
-        if (booking.getRideResponse() != null) {
+        if (booking.getRide() != null) {
             model.add(linkTo(methodOn(RideController.class)
-                    .getRideById(booking.getRideResponse().getId())).withRel("ride"));
+                    .getRideById(booking.getRide().getId())).withRel("ride"));
         }
         return model;
     }

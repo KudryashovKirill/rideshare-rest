@@ -3,6 +3,7 @@ package com.example.rideshare_rest.service;
 import com.example.rideshare_api_contract.dto.*;
 import com.example.rideshare_api_contract.exceptions.ResourceNotFoundException;
 import com.example.rideshare_rest.storage.InMemoryStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class BookingService {
     private final RideService rideService;
     private final UserService userService;
 
+    @Autowired
     public BookingService(InMemoryStorage storage, @Lazy RideService rideService, @Lazy UserService userService) {
         this.storage = storage;
         this.rideService = rideService;

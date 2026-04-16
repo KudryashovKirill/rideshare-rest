@@ -3,6 +3,7 @@ package com.example.rideshare_rest.service;
 import com.example.rideshare_api_contract.dto.*;
 import com.example.rideshare_api_contract.exceptions.ResourceNotFoundException;
 import com.example.rideshare_rest.storage.InMemoryStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class UserService {
     private final InMemoryStorage storage;
 
+    @Autowired
     public UserService(InMemoryStorage storage) {
         this.storage = storage;
     }

@@ -8,6 +8,7 @@ import com.example.rideshare_rest.assemblers.UserModelAssembler;
 import com.example.rideshare_rest.service.BookingService;
 import com.example.rideshare_rest.service.RideService;
 import com.example.rideshare_rest.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +30,7 @@ public class UserController implements UserApi {
     private final PagedResourcesAssembler<RideResponse> pagedResourcesRideAssembler;
     private final PagedResourcesAssembler<BookingResponse> pagedResourcesBookingAssembler;
 
-
+    @Autowired
     public UserController(UserService userService,
                           RideService rideService,
                           BookingService bookingService,
