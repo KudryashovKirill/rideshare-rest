@@ -48,22 +48,22 @@ public class RideDataFetcher {
      */
     @DgsQuery
     public RideConnectionGql rides(
-            @InputArgument RideFilterGql filterGql,
+            @InputArgument RideFilterGql filter,
             @InputArgument Integer page,
             @InputArgument Integer size) {
         int pageNum = page != null ? page : 0;
-        int pageSize = size != null ? size : 0;
+        int pageSize = size != null ? size : 20;
 
         Long driverId = null;
         String departureCity = null;
         String arrivalCity = null;
         Integer freeSeats = null;
 
-        if (filterGql != null) {
-            driverId = filterGql.driverId() != null ? Long.parseLong(filterGql.driverId()) : null;
-            departureCity = filterGql.departureCity() != null ? filterGql.departureCity() : null;
-            arrivalCity = filterGql.arrivalCity() != null ? filterGql.arrivalCity() : null;
-            freeSeats = filterGql.freeSeats() != null ? filterGql.freeSeats() : null;
+        if (filter != null) {
+            driverId = filter.driverId() != null ? Long.parseLong(filter.driverId()) : null;
+            departureCity = filter.departureCity() != null ? filter.departureCity() : null;
+            arrivalCity = filter.arrivalCity() != null ? filter.arrivalCity() : null;
+            freeSeats = filter.freeSeats() != null ? filter.freeSeats() : null;
         }
         PagedResponse<RideResponse> paged = rideService.getAllRides(
                 driverId, departureCity, arrivalCity, freeSeats, pageNum, pageSize);
@@ -80,17 +80,17 @@ public class RideDataFetcher {
      * Соответствует полю Mutation.createRide(input: CreateRideInput!) в схеме.
      */
     @DgsMutation
-    public RideResponse createRide(@InputArgument CreateRideInputGql inputGql) {
+    public RideResponse createRide(@InputArgument CreateRideInputGql input) {
         RideRequest request = new RideRequest(
-                Long.parseLong(inputGql.driverId()),
-                inputGql.departureCity(),
-                inputGql.arrivalCity(),
-                inputGql.departureTime(),
-                inputGql.arrivalTime(),
-                inputGql.totalSeats(),
-                inputGql.freeSeats(),
-                inputGql.status(),
-                inputGql.price()
+                Long.parseLong(input.driverId()),
+                input.departureCity(),
+                input.arrivalCity(),
+                input.departureTime(),
+                input.arrivalTime(),
+                input.totalSeats(),
+                input.freeSeats(),
+                input.status(),
+                input.price()
         );
         return rideService.create(request);
     }
@@ -100,16 +100,16 @@ public class RideDataFetcher {
      * Соответствует полю Mutation.updateRide(id, input) в схеме.
      */
     @DgsMutation
-    public RideResponse updateRide(@InputArgument String id, @InputArgument UpdateRideInputGql inputGql) {
+    public RideResponse updateRide(@InputArgument String id, @InputArgument UpdateRideInputGql input) {
         UpdateRideRequest request = new UpdateRideRequest(
-                inputGql.departureCity(),
-                inputGql.arrivalCity(),
-                inputGql.departureTime(),
-                inputGql.arrivalTime(),
-                inputGql.totalSeats(),
-                inputGql.freeSeats(),
-                inputGql.status(),
-                inputGql.price()
+                input.departureCity(),
+                input.arrivalCity(),
+                input.departureTime(),
+                input.arrivalTime(),
+                input.totalSeats(),
+                input.freeSeats(),
+                input.status(),
+                input.price()
         );
         return rideService.updateRide(Long.parseLong(id), request);
     }

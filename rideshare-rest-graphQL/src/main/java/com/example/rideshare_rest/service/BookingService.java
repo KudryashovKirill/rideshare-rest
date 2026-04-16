@@ -73,7 +73,7 @@ public class BookingService {
         UserResponse passenger = userService.getUserById(request.passengerId());
         BookingResponse booking = BookingResponse.builder()
                 .id(id)
-                .rideResponse(updatedRide)
+                .ride(updatedRide)
                 .passenger(passenger)
                 .status(request.status())
                 .requestedSeats(request.requestedSeats())
@@ -84,7 +84,7 @@ public class BookingService {
 
     public BookingResponse updateBooking(Long id, UpdateBookingRequest request) {
         BookingResponse existing = getBookingById(id);
-        RideResponse currentRide = rideService.getRideById(existing.getRideResponse().getId());
+        RideResponse currentRide = rideService.getRideById(existing.getRide().getId());
         RideResponse rideToSave = currentRide;
 
         if (request.requestedSeats() != null && !request.requestedSeats().equals(existing.getRequestedSeats())) {
@@ -118,7 +118,7 @@ public class BookingService {
         }
         BookingResponse updatedBooking = BookingResponse.builder()
                 .id(id)
-                .rideResponse(rideToSave)
+                .ride(rideToSave)
                 .passenger(existing.getPassenger())
                 .status(request.status())
                 .requestedSeats(request.requestedSeats())
@@ -129,7 +129,7 @@ public class BookingService {
 
     public BookingResponse patchBooking(Long id, PatchBookingRequest request) {
         BookingResponse existing = getBookingById(id);
-        RideResponse currentRide = rideService.getRideById(existing.getRideResponse().getId());
+        RideResponse currentRide = rideService.getRideById(existing.getRide().getId());
         RideResponse rideToSave = currentRide;
 
         if (request.requestedSeats() != null && !request.requestedSeats().equals(existing.getRequestedSeats())) {
@@ -164,7 +164,7 @@ public class BookingService {
 
         BookingResponse updatedBooking = BookingResponse.builder()
                 .id(id)
-                .rideResponse(rideToSave)
+                .ride(rideToSave)
                 .passenger(existing.getPassenger())
                 .status(request.status() != null ? request.status() : existing.getStatus())
                 .requestedSeats(request.requestedSeats() != null ?
@@ -180,7 +180,7 @@ public class BookingService {
         if (status == null || status.equals(existing.getStatus())) {
             return existing;
         }
-        RideResponse currentRide = rideService.getRideById(existing.getRideResponse().getId());
+        RideResponse currentRide = rideService.getRideById(existing.getRide().getId());
         RideResponse rideToSave = currentRide;
 
         if (status == BookingStatus.REJECTED &&
@@ -206,7 +206,7 @@ public class BookingService {
 
         BookingResponse updatedBooking = BookingResponse.builder()
                 .id(id)
-                .rideResponse(rideToSave)
+                .ride(rideToSave)
                 .passenger(existing.getPassenger())
                 .status(status)
                 .requestedSeats(existing.getRequestedSeats())
@@ -219,7 +219,7 @@ public class BookingService {
     public void delete(Long id) {
         BookingResponse existing = getBookingById(id);
         if (existing.getStatus() != BookingStatus.REJECTED) {
-            RideResponse ride = rideService.getRideById(existing.getRideResponse().getId());
+            RideResponse ride = rideService.getRideById(existing.getRide().getId());
             RideStatus restoredStatus = (ride.getFreeSeats() + existing.getRequestedSeats() > 0)
                     ? RideStatus.ACTIVE : ride.getStatus();
             RideResponse updatedRide = RideResponse.builder()

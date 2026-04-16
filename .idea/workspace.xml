@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d64a074-8ebf-45d9-be0b-cfb5ce47e006" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/RideBookingDataFetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rideshare-api-contract" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-api-contract" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rideshare-api-contract/src/main/java/com/example/rideshare_api_contract/dto/BookingResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-api-contract/src/main/java/com/example/rideshare_api_contract/dto/BookingResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/assemblers/BookingModelAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/assemblers/BookingModelAssembler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-api-contract/src/main/java/com/example/rideshare_api_contract/endpoints/RideApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-api-contract/src/main/java/com/example/rideshare_api_contract/endpoints/RideApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-api-contract/src/main/resources/graphql/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-api-contract/src/main/resources/graphql/schema.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/controllers/RideController.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/controllers/RideController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/BookingDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/BookingDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/BookingRelationDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/BookingRelationDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/RideDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/RideDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/RideRelationDataFetcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/UserDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/UserDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/UserRidesDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/graphql/fetcher/UserRidesDataFetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/service/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/service/BookingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/service/RideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/service/RideService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/storage/InMemoryStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/rideshare-rest-graphQL/src/main/java/com/example/rideshare_rest/storage/InMemoryStorage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +37,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/rideshare-api-contract" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -51,8 +59,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.RideshareRestApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "graphQL-integration",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/JavaProjects/rideshare-rest-graphQL-v1.1"
   }

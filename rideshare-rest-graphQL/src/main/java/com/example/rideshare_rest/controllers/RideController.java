@@ -2,6 +2,7 @@ package com.example.rideshare_rest.controllers;
 
 import com.example.rideshare_api_contract.dto.*;
 import com.example.rideshare_api_contract.endpoints.RideApi;
+import com.example.rideshare_rest.assemblers.BookingModelAssembler;
 import com.example.rideshare_rest.assemblers.RideModelAssembler;
 import com.example.rideshare_rest.service.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class RideController implements RideApi {
     private final RideService rideService;
     private final RideModelAssembler rideModelAssembler;
-    private final PagedResourcesAssembler<RideResponse> pagedResourcesAssembler;
+    private final BookingModelAssembler bookingModelAssembler;
+    private final PagedResourcesAssembler<RideResponse> pagedResourcesRideAssembler;
+    private final PagedResourcesAssembler<BookingResponse> pagedResourcesBookingAssembler;
 
     @Autowired
     public RideController(RideService rideService,
                           RideModelAssembler rideModelAssembler,
-                          PagedResourcesAssembler<RideResponse> pagedResourcesAssembler) {
+                          BookingModelAssembler bookingModelAssembler,
+                          PagedResourcesAssembler<RideResponse> pagedResourcesRideAssembler,
+                          PagedResourcesAssembler<BookingResponse> pagedResourcesBookingAssembler) {
         this.rideService = rideService;
         this.rideModelAssembler = rideModelAssembler;
-        this.pagedResourcesAssembler = pagedResourcesAssembler;
+        this.bookingModelAssembler = bookingModelAssembler;
+        this.pagedResourcesRideAssembler = pagedResourcesRideAssembler;
+        this.pagedResourcesBookingAssembler = pagedResourcesBookingAssembler;
     }
 
     @Override
@@ -39,7 +46,7 @@ public class RideController implements RideApi {
                 PageRequest.of(paged.pageNumber(), paged.pageSize()),
                 paged.totalElements()
         );
-        return pagedResourcesAssembler.toModel(springPage, rideModelAssembler);
+        return pagedResourcesRideAssembler.toModel(springPage, rideModelAssembler);
     }
 
     @Override
@@ -74,5 +81,16 @@ public class RideController implements RideApi {
     @Override
     public void deleteRide(Long id) {
         rideService.delete(id);
+    }
+
+    @Override
+    public PagedModel<EntityModel<BookingResponse>> getAllBookingsByRideId(Long rideId, int page, int size) {
+        PagedResponse<BookingResponse> paged = rideService.getAllBookingsByRideId(rideId, page, size);
+        Page<BookingResponse> springPage = new PageImpl<>(
+                paged.content(),
+                PageRequest.of(paged.pageNumber(), paged.pageSize()),
+                paged.totalElements()
+        );
+        return pagedResourcesBookingAssembler.toModel(springPage, bookingModelAssembler);
     }
 }

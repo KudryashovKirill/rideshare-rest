@@ -78,7 +78,7 @@ public class InMemoryStorage {
         long bookingId1 = bookingSequence.incrementAndGet();
         bookings.put(bookingId1, BookingResponse.builder()
                 .id(bookingId1)
-                .rideResponse(ride1)
+                .ride(ride1)
                 .passenger(user2)
                 .status(BookingStatus.CONFIRMED)
                 .requestedSeats(1)
@@ -87,7 +87,7 @@ public class InMemoryStorage {
         long bookingId2 = bookingSequence.incrementAndGet();
         bookings.put(bookingId2, BookingResponse.builder()
                 .id(bookingId2)
-                .rideResponse(ride2)
+                .ride(ride2)
                 .passenger(user1)
                 .status(BookingStatus.PENDING)
                 .requestedSeats(2)
@@ -96,7 +96,7 @@ public class InMemoryStorage {
         long bookingId3 = bookingSequence.incrementAndGet();
         bookings.put(bookingId3, BookingResponse.builder()
                 .id(bookingId3)
-                .rideResponse(ride1)
+                .ride(ride1)
                 .passenger(UserResponse.builder()
                         .id(99L)
                         .firstName("Иван")

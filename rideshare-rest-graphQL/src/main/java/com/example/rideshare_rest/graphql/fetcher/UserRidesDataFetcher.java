@@ -24,6 +24,7 @@ public class UserRidesDataFetcher {
         if (ride.getDriver() != null) {
             return userService.getUserById(ride.getDriver().getId());
         }
+
         return null;
     }
 }

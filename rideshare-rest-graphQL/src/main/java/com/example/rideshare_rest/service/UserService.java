@@ -103,7 +103,7 @@ public class UserService {
         List<RideResponse> response = storage.bookings.values().stream()
                 .filter(bookingResponse -> bookingResponse.getPassenger() != null
                         && bookingResponse.getPassenger().getId().equals(id))
-                .map(BookingResponse::getRideResponse)
+                .map(BookingResponse::getRide)
                 .distinct()
                 .toList();
         int totalElements = response.size();

@@ -24,11 +24,7 @@ public class BookingRelationDataFetcher {
     @DgsData(parentType = "Booking", field = "ride")
     public RideResponse ride(DgsDataFetchingEnvironment dfe) {
         BookingResponse booking = dfe.getSource();
-
-        if (booking.getRide() != null) {
-            return rideService.getRideById(booking.getRide().getId());
-        }
-        return null;
+        return rideService.getRideById(booking.getRide().getId());
     }
 
     @DgsData(parentType = "Booking", field = "passenger")

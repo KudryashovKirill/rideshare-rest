@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -128,5 +129,17 @@ public class RideService {
     public void delete(Long id) {
         getRideById(id);
         storage.rides.remove(id);
+    }
+
+    public PagedResponse<BookingResponse> getAllBookingsByRideId(Long id, int page, int size) {
+        List<BookingResponse> all = storage.bookings.values().stream()
+                .filter(booking -> Objects.equals(booking.getRide().getId(), id))
+                .toList();
+        int totalElements = all.size();
+        int totalPages = size > 0 ? (int) Math.ceil((double) totalElements / size) : 1;
+        int from = page * size;
+        int to = Math.min(from + size, totalElements);
+        List<BookingResponse> content = (from >= totalElements) ? List.of() : all.subList(from, to);
+        return new PagedResponse<>(content, page, size, totalElements, totalPages, page >= totalPages - 1);
     }
 }

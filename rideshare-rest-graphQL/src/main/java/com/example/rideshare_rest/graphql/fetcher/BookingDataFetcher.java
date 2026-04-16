@@ -37,16 +37,16 @@ public class BookingDataFetcher {
      */
     @DgsQuery
     public BookingConnectionGql bookings(
-            @InputArgument BookingFilterGql filterGql,
+            @InputArgument BookingFilterGql filter,
             @InputArgument Integer page,
             @InputArgument Integer size) {
         int pageNum = page != null ? page : 0;
-        int pageSize = size != null ? size : 0;
+        int pageSize = size != null ? size : 20;
 
         BookingStatus status = null;
 
-        if (filterGql != null) {
-            status = filterGql.status() != null ? filterGql.status() : null;
+        if (filter != null) {
+            status = filter.status() != null ? filter.status() : null;
         }
 
         PagedResponse<BookingResponse> paged = bookingService.getAllBookings(status, pageNum, pageSize);
@@ -63,12 +63,12 @@ public class BookingDataFetcher {
      * Соответствует полю Mutation.createBooking(input: CreateBookingInput!) в схеме.
      */
     @DgsMutation
-    public BookingResponse createBooking(@InputArgument CreateBookingInputGql inputGql) {
+    public BookingResponse createBooking(@InputArgument CreateBookingInputGql input) {
         BookingRequest request = new BookingRequest(
-                Long.parseLong(inputGql.rideId()),
-                Long.parseLong(inputGql.passengerId()),
-                inputGql.status(),
-                inputGql.requestedSeats()
+                Long.parseLong(input.rideId()),
+                Long.parseLong(input.passengerId()),
+                input.status(),
+                input.requestedSeats()
         );
         return bookingService.createBooking(request);
     }
@@ -78,10 +78,10 @@ public class BookingDataFetcher {
      * Соответствует полю Mutation.updateBooking(id, input) в схеме.
      */
     @DgsMutation
-    public BookingResponse updateBooking(@InputArgument String id, @InputArgument UpdateBookingInputGql inputGql) {
+    public BookingResponse updateBooking(@InputArgument String id, @InputArgument UpdateBookingInputGql input) {
         UpdateBookingRequest request = new UpdateBookingRequest(
-                inputGql.status(),
-                inputGql.requestedSeats()
+                input.status(),
+                input.requestedSeats()
         );
         return bookingService.updateBooking(Long.parseLong(id), request);
     }

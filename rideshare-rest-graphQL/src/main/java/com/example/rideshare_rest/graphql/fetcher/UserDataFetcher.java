@@ -50,7 +50,7 @@ public class UserDataFetcher {
             @InputArgument Integer page,
             @InputArgument Integer size) {
         int pageNum = page != null ? page : 0;
-        int pageSize = size != null ? size : 0;
+        int pageSize = size != null ? size : 20;
 
         PagedResponse<UserResponse> paged = userService.getAllUsers(pageNum, pageSize);
         return new UserConnectionGql(
@@ -66,12 +66,12 @@ public class UserDataFetcher {
      */
 
     @DgsMutation
-    public UserResponse createUser(@InputArgument CreateUserInputGql inputGql) {
+    public UserResponse createUser(@InputArgument CreateUserInputGql input) {
         UserRequest request = new UserRequest(
-                inputGql.firstName(),
-                inputGql.lastName(),
-                inputGql.email(),
-                inputGql.birthDate()
+                input.firstName(),
+                input.lastName(),
+                input.email(),
+                input.birthDate()
         );
         return userService.create(request);
     }
@@ -81,12 +81,12 @@ public class UserDataFetcher {
      * Соответствует полю Mutation.updateUser(id, input) в схеме.
      */
     @DgsMutation
-    public UserResponse updateUser(@InputArgument String id, @InputArgument UpdateUserInputGql inputGql) {
+    public UserResponse updateUser(@InputArgument String id, @InputArgument UpdateUserInputGql input) {
         UserRequest request = new UserRequest(
-                inputGql.firstName(),
-                inputGql.lastName(),
-                inputGql.email(),
-                inputGql.birthDate()
+                input.firstName(),
+                input.lastName(),
+                input.email(),
+                input.birthDate()
         );
         return userService.updateUser(Long.parseLong(id), request);
     }
